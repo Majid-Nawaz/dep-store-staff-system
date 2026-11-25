@@ -12,7 +12,7 @@ public class Employee {
     private ManagerType position;
     
     public Employee(String name, Department department, ManagerType position){
-        if(name==null || name.isEmpty()){
+        if(name==null || name.trim().isEmpty()){
             throw new IllegalArgumentException("Invalid input for name");
         }
         if(department==null){
@@ -40,7 +40,7 @@ public class Employee {
     @Override
     
     public String toString(){
-        return name + " | "+position + "| "+ department;
+        return name + " | "+position + " | "+ department;
     } 
     
     

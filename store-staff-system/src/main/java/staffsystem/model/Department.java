@@ -27,12 +27,13 @@ public enum Department {
     
     
     //for finding a department wether it exists in enum constants or not
-    public Department fromDepartment(String depName){
+    public static Department fromDepartment(String depName){
         if(depName==null){
             return null;
         }
+        String cleanedDepName = depName.trim();
         for(Department department : values()){
-            if(depName == department.departmentLabel){
+            if(department.departmentLabel.equalsIgnoreCase(cleanedDepName)){
                 return department;
             }
         }

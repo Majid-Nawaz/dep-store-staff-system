@@ -21,7 +21,7 @@ public enum ManagerType {
     }
     
     //method to find if a position exists in enum
-    public ManagerType fromPosition(String positionText){
+    public static ManagerType fromPosition(String positionText){
         if(positionText==null){
             return null;
         }

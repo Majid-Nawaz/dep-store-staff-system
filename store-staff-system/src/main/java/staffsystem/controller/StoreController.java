@@ -1,6 +1,11 @@
 
 package staffsystem.controller;
 
+import java.io.IOException;
+import java.util.List;
+import staffsystem.model.Employee;
+import staffsystem.model.StaffFileReader;
+import staffsystem.model.StaffList;
 import staffsystem.view.MenuOption;
 import staffsystem.view.SystemView;
 
@@ -8,14 +13,19 @@ import staffsystem.view.SystemView;
 public class StoreController {
     
     SystemView view;
+    StaffList allStaffList;
+    StaffFileReader reader;
     
-    public StoreController(SystemView view){
+    public StoreController(SystemView view, StaffFileReader fileReader, StaffList staffList){
         this.view = view;
+        this.reader = fileReader;
+        this.allStaffList = staffList;
     }
     
     public void run(){
         view.displayWelcome();
         while(true){
+            loadAllStaff();
             view.displayMenu();
             
             MenuOption userChoice = view.userChoice();
@@ -31,6 +41,15 @@ public class StoreController {
                 
             }
         }
+    }
+    
+    private void loadAllStaff(){
+        String fileName = view.askFileName();
+        
+        List<Employee> staffListFromReader = reader.readAndAddEmployees(fileName);
+        
+        allStaffList.addAllEmployeesToList(staffListFromReader);
+        
     }
     
 }
