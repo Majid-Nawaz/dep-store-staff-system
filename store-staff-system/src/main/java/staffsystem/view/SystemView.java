@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class SystemView {
     
+    private final Scanner scanner = new Scanner(System.in);
     public void displayWelcome(){
         System.out.println("========Northgate Department Store -  Staff Hub=======\n");
         
@@ -20,7 +21,7 @@ public class SystemView {
     }
     public MenuOption userChoice(){
         System.out.println("Enter a number of your choice from menu: ");
-        Scanner scanner = new Scanner(System.in);
+        
         
         while(true){
             String userInput = scanner.nextLine();

@@ -2,7 +2,7 @@
 package staffsystem.view;
 
 public enum MenuOption {
-    Sort_Names(1, "Sort staff names (A-Z)"),
+    SORT_NAMES(1, "Sort staff names (A-Z)"),
     FIND_EMPLOYEE(2, "Find an employee"),
     ADD_EMPLOYEE(3, "Add a new employee"),
     BUILD_HIERARCHY(4, "Build the staff hierarchy tree"),

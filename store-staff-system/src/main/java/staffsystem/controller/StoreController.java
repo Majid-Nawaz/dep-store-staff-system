@@ -21,11 +21,11 @@ public class StoreController {
             MenuOption userChoice = view.userChoice();
             
             switch(userChoice){
-                case Sort_Names: System.out.println("Sorting available here later \n \n"); break;
+                case SORT_NAMES: System.out.println("Sorting available here later \n \n"); break;
                 case FIND_EMPLOYEE: System.out.println("Finding employee available here later \n \n");break;
                 case ADD_EMPLOYEE: System.out.println("Adding employee available here later \n \n");break;
-                case BUILD_HIERARCHY: System.out.println("\bHierarchy available here later\b \n \n");break;
-                case QUIT: {System.out.println("available here later");
+                case BUILD_HIERARCHY: System.out.println("Hierarchy available here later\n \n");break;
+                case QUIT: {System.out.println("See You Next Time");
                             return;
                 }
                 
