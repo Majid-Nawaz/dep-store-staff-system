@@ -27,37 +27,45 @@ public class StaffFileReader {
                 throw new  IOException("This file is empty");
             }
             
-            String[] firstLineInFile = headerLineInFile.split(",");
+            String[] firstLineInFile = headerLineInFile.split(",", -1);
             
             int firstNameIndexInHeaderLine = findColumnsIndex(firstLineInFile, FIRST_NAME_COLUMN);
             int lastNameIndexInHeaderLine = findColumnsIndex(firstLineInFile, LAST_NAME_COLUMN);
             int departmentIndexInHeaderLine = findColumnsIndex(firstLineInFile, DEPARTMENT_COLUMN);
-            int ManagerTypeIndexInHeaderLine = findColumnsIndex(firstLineInFile, MANAGER_TYPE_COLUMN);
+            int managerTypeIndexInHeaderLine = findColumnsIndex(firstLineInFile, MANAGER_TYPE_COLUMN);
             
             String line=reader.readLine();
             while(line != null){
-                String[] eachLineValues = line.split(",");
+                if(!line.trim().isEmpty()){
+                try{
+                String[] eachLineValues = line.split(",", -1);
                 
                 String name = eachLineValues[firstNameIndexInHeaderLine] + " " + eachLineValues[lastNameIndexInHeaderLine];
                 
                 String departmentInLine = eachLineValues[departmentIndexInHeaderLine];
                 Department department = Department.fromDepartment(departmentInLine);
                 
-                String positionInLine = eachLineValues[ManagerTypeIndexInHeaderLine];
+                String positionInLine = eachLineValues[managerTypeIndexInHeaderLine];
                 ManagerType employeePosition = ManagerType.fromPosition(positionInLine);
                 
                 staffList.add(new Employee(name, department, employeePosition));
                 
-                line=reader.readLine();
+                
+                }catch(IllegalArgumentException | ArrayIndexOutOfBoundsException e){
+            
+                skippedRows++;
+        }
             }
+            line=reader.readLine();
             
-        }catch(IOException | ArrayIndexOutOfBoundsException e){
-            
-            skippedRows++;
         }
     return staffList;
+        }   
         
-        
+    }
+    
+    public int getSkippedRows(){
+        return skippedRows;
     }
     
     private int findColumnsIndex(String[] headersArray, String columnTitle) throws IOException{

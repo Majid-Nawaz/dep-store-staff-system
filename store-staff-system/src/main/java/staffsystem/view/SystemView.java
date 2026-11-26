@@ -47,5 +47,9 @@ public class SystemView {
         return fileName;
     }
     
+    public void displayMessage(String message){
+        System.out.println(message);
+    }
+    
     
 }

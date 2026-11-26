@@ -7,9 +7,9 @@ package staffsystem.model;
 */
 public class Employee {
     
-    private String name;
-    private Department department;
-    private ManagerType position;
+    private final String name;
+    private final Department department;
+    private final ManagerType position;
     
     public Employee(String name, Department department, ManagerType position){
         if(name==null || name.trim().isEmpty()){
