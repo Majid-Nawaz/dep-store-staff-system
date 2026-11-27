@@ -4,7 +4,9 @@ package staffsystem.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import staffsystem.model.BinarySearcher;
 import staffsystem.model.Employee;
+import staffsystem.model.MergeSorter;
 import staffsystem.model.StaffFileReader;
 import staffsystem.model.StaffList;
 import staffsystem.view.MenuOption;
@@ -34,8 +36,20 @@ public class StoreController {
             MenuOption userChoice = view.userChoice();
             
             switch(userChoice){
-                case SORT_NAMES: view.displayMessage("Sorting available here later \n \n"); break;
-                case FIND_EMPLOYEE: view.displayMessage("Finding employee available here later \n \n");break;
+                case SORT_NAMES: 
+                    List<Employee> unsortedList = allStaffList.getStaff();
+                    List<Employee> sortedList = MergeSorter.mergeSorter(unsortedList);
+                    view.displayList(sortedList); break;
+
+                case FIND_EMPLOYEE: 
+                    List<Employee> unsortedStaffList = allStaffList.getStaff();
+                    List<Employee> sortedStaffList = MergeSorter.mergeSorter(unsortedStaffList);
+                   
+                    String staffName = view.askUserName();
+                    Employee staffMemberBinarySearched = BinarySearcher.findByName(sortedStaffList, staffName);
+                    view.displayBinarySearchedMember(staffMemberBinarySearched);
+                    
+                    view.displayMessage("Finding employee available here later \n \n");break;
                 case ADD_EMPLOYEE: view.displayMessage("Adding employee available here later \n \n");break;
                 case BUILD_HIERARCHY: view.displayMessage("Hierarchy available here later\n \n");break;
                 case QUIT: {view.displayMessage("See You Next Time");

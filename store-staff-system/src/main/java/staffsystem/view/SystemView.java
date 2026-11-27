@@ -1,7 +1,9 @@
 
 package staffsystem.view;
 
+import java.util.List;
 import java.util.Scanner;
+import staffsystem.model.Employee;
 
 
 public class SystemView {
@@ -50,6 +52,22 @@ public class SystemView {
     public void displayMessage(String message){
         System.out.println(message);
     }
+    public void displayList(List<Employee> staffList){
+        for(Employee staff: staffList){
+            System.out.println(staff.getEmployeeName()+ " | "+ staff.getEmployeeDepartment()+" | "+ staff.getEmployeePosition());
+        }
+        
+    }
+    public String askUserName() {                       // prompt = the question to show, e.g. "Type the name of..."
+         System.out.println("Enter a user name to search with binary searcher");                           // print (not println) so the user types on the same line
+        return scanner.nextLine().trim();                    // read the typed line with the ONE shared Scanner, remove outer spaces, give it back
+    }
+    public void displayBinarySearchedMember(Employee staffMember){
+        System.out.println(staffMember.getEmployeeName()+ " | "+ staffMember.getEmployeeDepartment()+" | "+ staffMember.getEmployeePosition());
+    }
+    
+    
+    
     
     
 }
