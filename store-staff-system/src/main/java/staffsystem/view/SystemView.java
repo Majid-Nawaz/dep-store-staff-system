@@ -58,11 +58,14 @@ public class SystemView {
         }
         
     }
-    public String askUserName() {                       // prompt = the question to show, e.g. "Type the name of..."
+    public String askUserName() {                      
          System.out.println("Enter a user name to search with binary searcher");                           // print (not println) so the user types on the same line
         return scanner.nextLine().trim();                    // read the typed line with the ONE shared Scanner, remove outer spaces, give it back
     }
     public void displayBinarySearchedMember(Employee staffMember){
+        if(staffMember==null){
+            System.out.println(staffMember+" doesnot exist.");
+        }
         System.out.println(staffMember.getEmployeeName()+ " | "+ staffMember.getEmployeeDepartment()+" | "+ staffMember.getEmployeePosition());
     }
     

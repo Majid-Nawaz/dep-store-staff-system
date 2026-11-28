@@ -38,18 +38,17 @@ public class StoreController {
             switch(userChoice){
                 case SORT_NAMES: 
                     List<Employee> unsortedList = allStaffList.getStaff();
-                    List<Employee> sortedList = MergeSorter.mergeSorter(unsortedList);
+                    List<Employee> sortedList = MergeSorter.sortByName(unsortedList);
                     view.displayList(sortedList); break;
 
                 case FIND_EMPLOYEE: 
                     List<Employee> unsortedStaffList = allStaffList.getStaff();
-                    List<Employee> sortedStaffList = MergeSorter.mergeSorter(unsortedStaffList);
+                    List<Employee> sortedStaffList = MergeSorter.sortByName(unsortedStaffList);
                    
                     String staffName = view.askUserName();
                     Employee staffMemberBinarySearched = BinarySearcher.findByName(sortedStaffList, staffName);
                     view.displayBinarySearchedMember(staffMemberBinarySearched);
-                    
-                    view.displayMessage("Finding employee available here later \n \n");break;
+                    ;break;
                 case ADD_EMPLOYEE: view.displayMessage("Adding employee available here later \n \n");break;
                 case BUILD_HIERARCHY: view.displayMessage("Hierarchy available here later\n \n");break;
                 case QUIT: {view.displayMessage("See You Next Time");
